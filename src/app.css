@@ -1,0 +1,173 @@
+
+/*calculator*/
+:root{
+    --bg: #e1e1e1; --panel: #4f4f4f; --text: #fafafa; --accent:#2563eb;
+    --bg-button:#7d7d7d; --bg-op:#ff9f0a; --shadow:#4b4b4b; --display:#FFFFFFFF
+}
+
+.calc[data-theme = "light"]{
+    --panel: #d3d3d3;
+    --text: #252525;
+    --bg-button: #b2b2b2;
+    --bg-op: #fff6e5;
+    --shadow: #ffffff;
+    --display: #000000;
+}
+
+*{box-sizing:border-box}
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--bg);
+    font-family:Inter, Arial, sans-serif;
+    color:var(--text);
+}
+.calc {
+    width: 300px;
+    background: var(--panel);
+    border-radius: 12px;
+    box-shadow: 0 0 37px 0px var(--shadow);
+    padding: 2px;
+    position: relative;
+}
+.display {
+    position: relative;
+    height:90px;
+    border-radius:8px;
+    background:transparent;
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-end;
+}
+.display .history{
+    font-size:13px;
+    height:18px;
+    color:var(--display);
+}
+.display .value{
+    font-size:45px;
+    line-height:1;
+    word-break:break-all;
+    font-weight: normal;
+    color:var(--display);
+}
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:3px;
+    margin-top:12px;
+}
+
+button{
+    padding:11px;
+    border:none;
+    background:var(--bg-button);
+    cursor:pointer;
+    font-size:26px;
+    color:var(--text);
+}
+button.op{
+    background:var(--bg-op);
+}
+button.wide{
+    grid-column:span 2;
+    border-radius: 0 0 0 8px;
+}
+button.op[data-action]{
+    border-radius: 0 0 8px 0 ;
+}
+.dark_gray{
+    font-size:22px;
+    padding:10px;
+}
+.colored_circles{
+    display: flex;
+    flex-direction: row;
+    gap:11px;
+    position: absolute;
+    top:7px;
+    left: 7px;
+
+}
+.colored_circles > *{
+    width: 11px;
+    height: 11px;
+    border-radius: 100%;
+}
+.red{
+    background-color: #ff5f57;
+}
+.yellow{
+    background-color: #fbba2f;
+}
+.green{
+    background-color: #28c840;
+}
+
+
+/*checkbox*/
+.checkbox_container {
+    position: absolute;
+    width: 46px;
+    height: 24px;
+    cursor: pointer;
+    top: -30px;
+    right: 5px;
+}
+
+input.toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+input.toggle + label {
+    display: block;
+    width: 46px;
+    height: 24px;
+    background: #cfcfcf;
+    border-radius: 20px;
+    position: relative;
+    transition: background 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+}
+
+input.toggle + label::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+input.toggle + label::after {
+    content: "☀️";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 10px;
+    transition: transform 0.3s ease, content 0.3s ease;
+}
+
+input.toggle:checked + label {
+    background: #4F4F4F;
+}
+
+input.toggle:checked + label::before {
+    transform: translateX(22px);
+}
+
+input.toggle:checked + label::after {
+    content: "🌙";
+    transform: translateX(22px);
+}

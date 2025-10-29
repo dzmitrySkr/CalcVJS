@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="../src/app.css">
+</head>
+<body>
+<div class="calc" id="calculator" data-theme = "dark">
+    <div class = "checkbox_container" id = "theme_checkbox" >
+        <input type="checkbox" class="toggle" id="toggle" checked="checked" />
+        <label for="toggle"></label>
+    </div>
+    <div class="display">
+        <div class = "colored_circles">
+            <div class="red" id="red"></div>
+            <div class="yellow"></div>
+            <div class="green" id="green"></div>
+        </div>
+        <div class="history" id="history"></div>
+        <div class="value" id="value">0</div>
+    </div>
+
+    <div class="buttons" id="buttons">
+        <button class="dark_gray" data-action="clear">AC</button>
+        <button class="dark_gray" data-action="sign">+/-</button>
+        <button class="dark_gray" data-action="percent">%</button>
+        <button class="op" data-operators="/">÷</button>
+
+        <button data-number="7">7</button>
+        <button data-number="8">8</button>
+        <button data-number="9">9</button>
+        <button class="op" data-operators="*">×</button>
+
+        <button data-number="4">4</button>
+        <button data-number="5">5</button>
+        <button data-number="6">6</button>
+        <button class="op" data-operators="-">−</button>
+
+        <button data-number="1">1</button>
+        <button data-number="2">2</button>
+        <button data-number="3">3</button>
+        <button class="op" data-operators="+">+</button>
+
+        <button class="wide" data-number="0">0</button>
+        <button data-number=".">.</button>
+        <button class="op" data-action="equals">=</button>
+    </div>
+</div>
+
+<script src="bundle.js"></script
+
+</body>
+</html>
