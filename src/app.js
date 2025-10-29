@@ -78,7 +78,6 @@ class Calculator {
         }
     }
 
-
     inputNumber(number) {
         if (this.#error) return;
         this.checkToClearInput();
@@ -105,14 +104,12 @@ class Calculator {
         else this.#currentInput = "-" + this.#currentInput;
     }
 
-
     percent() {
         if (this.#error) return;
         const num = this.toNumber(this.#currentInput);
         const res = num / 100;
         this.setCurrentInput(this.numberToString(res));
     }
-
 
     setOperator(operator) {
         if (this.#error) return;
@@ -124,7 +121,6 @@ class Calculator {
         this.#pendingOp = operator;
         this.#awaitingNewInput = true;
     }
-
 
     compute() {
         if (this.#error || this.#awaitingNewInput) return;
@@ -159,8 +155,6 @@ class Calculator {
         this.#currentInput = this.numberToString(res);
     }
 
-
-
     numberToString(number) {
         if (!isFinite(number) || number === 0) return Calculator.ZERO;
         let stringNumber = number.toString();
@@ -169,14 +163,12 @@ class Calculator {
         return parseFloat(fixed).toString();
     }
 
-
     toNumber(string) {
         if (_.emptyOrNull(string)) return 0;
         const num = Number(string);
         if (!isFinite(num)) return 0;
         return num;
     }
-
 
     getDisplayValue() {
         if (this.#error) return this.#error;
@@ -199,6 +191,9 @@ class CalculatorUI {
     static OPERATORS = ["+","-","*","/"];
     static CLEAR = "clear";
     static EQUALS = "equals";
+    static LIGHT = "light";
+    static DARK = "dark";
+    static THEME = "theme";
 
     constructor() {
         this.calc = new Calculator();
@@ -216,16 +211,16 @@ class CalculatorUI {
 
         toggle.addEventListener("change", (e) => {
             if(e.target.checked){
-                calculator.dataset.theme = "dark";
-                localStorage.setItem("theme", "dark");
+                calculator.dataset.theme = CalculatorUI.DARK;
+                localStorage.setItem(CalculatorUI.THEME, CalculatorUI.DARK);
             } else {
-                calculator.dataset.theme = "light";
-                localStorage.setItem("theme", "light");
+                calculator.dataset.theme = CalculatorUI.LIGHT;
+                localStorage.setItem(CalculatorUI.THEME, CalculatorUI.LIGHT);
             }
         });
 
-        const savedTheme = localStorage.getItem("theme") || "light";
-        toggle.checked = savedTheme === "dark";
+        const savedTheme = localStorage.getItem(CalculatorUI.THEME) || CalculatorUI.LIGHT;
+        toggle.checked = savedTheme === CalculatorUI.DARK;
         toggle.dispatchEvent(new Event("change"));
     }
 
@@ -307,6 +302,5 @@ class CalculatorUI {
         this.historyEl.textContent = this.calc.getHistory();
     }
 }
-
 
 document.addEventListener("DOMContentLoaded", () => new CalculatorUI());
